@@ -5,19 +5,14 @@ session_start();
 
 //database details
 define('DBHOST','localhost');
-define('DBUSER','root');
-define('DBPASS','');
+define('DBUSER','jessica');
+define('DBPASS','30120146');
 define('DBNAME','techno_blog');
 
 $db = new PDO("mysql:host=".DBHOST.";dbname=".DBNAME, DBUSER, DBPASS);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-//set timezone- Asia Kolkata 
-
-
-//load classes as needed
-//load classes as needed
 function __autoload($class) {
    
    $class = strtolower($class);
