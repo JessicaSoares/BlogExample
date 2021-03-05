@@ -1,6 +1,8 @@
 <?php 
 //include connection file 
+
 require_once('../includes/config.php');
+require_once('./header.php');
 
 //check login or not 
 if(!$user->is_logged_in()){ header('Location: login.php'); }

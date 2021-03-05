@@ -7,25 +7,14 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
 <!-- Custom styles for this template -->
-<link href="css/clean-blog.min.css" rel="stylesheet">
+<link href="css/clean-blog.css" rel="stylesheet">
 
 </head>
 
 <body>
 
 <!-- Navigation -->
-
+<div class="container">
+<div class="content">
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('img/post-bg.jpg')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-10 mx-auto">
-        <div class="post-heading">
-        
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
