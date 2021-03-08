@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>New Blog Post</title>
+    <title>New Blog Post Template | PrepBootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
@@ -19,7 +19,7 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 <?php include("head.php");  ?>
 <!-- On page head area--> 
-  <title>Aicionar nova postagem</title>
+  <title>Add New Article - Techno Smarter Blog</title>
     <script src= src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js></script>
     <script>
           tinymce.init({
@@ -34,24 +34,25 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
           });
   </script>
 
-  <?php include("header.php");  ?>
+  <?php include("header.php"); 
+
+   ?>
 
 <div class="content">
  
-
-
+    <h1>Add New Article</h1>
 
     <?php
 
+    //if form has been submitted process it
     if(isset($_POST['submit'])){
+
+ 
+
         //collect form data
         extract($_POST);
 
-        //very basic validation
-        if($articleId ==''){
-            $error[] = 'This post is missing a valid id!.';
-        }
-
+        //very basic validations
         if($articleTitle ==''){
             $error[] = 'Please enter the title.';
         }
@@ -63,29 +64,35 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
         if($articleContent ==''){
             $error[] = 'Please enter the content.';
         }
-        
-
 
         if(!isset($error)){
-try {
 
-   
+          try {
+
+
 
     //insert into database
-    $stmt = $db->prepare('UPDATE techno_blog SET articleTitle = :articleTitle,  articleDescrip = :articleDescrip, articleContent = :articleContent WHERE articleId = :articleId') ;
+   $stmt = $db->prepare('INSERT INTO techno_blog (articleTitle,articleDescrip,articleContent,articleDate) VALUES (:articleTitle, :articleDescrip, :articleContent, :articleDate)') ;
+  
+
+
+
 $stmt->execute(array(
     ':articleTitle' => $articleTitle,
     ':articleDescrip' => $articleDescrip,
     ':articleContent' => $articleContent,
-    ':articleId' => $articleId,
-  
+    ':articleDate' => date('Y-m-d H:i:s'),
+    
 ));
+//add categories
+ 
+
 
     //redirect to index page
-    header('Location: index.php?action=updated');
+    header('Location: index.php?action=added');
     exit;
 
-} catch(PDOException $e) {
+}catch(PDOException $e) {
                 echo $e->getMessage();
             }
 
@@ -93,55 +100,48 @@ $stmt->execute(array(
 
     }
 
-    ?>
-
-
-    <?php
     //check for any errors
     if(isset($error)){
         foreach($error as $error){
-            echo $error.'<br>';
+            echo '<p class="message">'.$error.'</p>';
         }
     }
-
-        try {
-
-           $stmt = $db->prepare('SELECT articleId,articleTitle, articleDescrip, articleContent FROM techno_blog WHERE articleId = :articleId') ;
-            $stmt->execute(array(':articleId' => $_GET['id']));
-            $row = $stmt->fetch(); 
-
-        } catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-
     ?>
 
 <div class="container">
 
+<div class="page-header">
+    <h1>New Blog Post <small>A responsive blog post template</small></h1>
+</div>
+
+<!-- New Blog Post - START -->
+<div class="container">
+    <div class="row" id="row_style">
     <form action="" method="post">
-        <h4 class="text-center">Editar Postagem</h4>
-        <div class="col-md-12">
+        <h4 class="text-center">Submit new post</h4>
+        <div class="col-md-4   col-md-offset-4">
             <div class="form-group">
            
 
-            <input type="text" class="form-control" placeholder="Titulo"  name="articleTitle" value="<?php  echo $row['articleTitle'];?>"> 
+                <input type="text" class="form-control" placeholder="Titulo"  name="articleTitle" value="<?php if(isset($error)){ echo $_POST['articleTitle'];}?>"> 
 
 
                
             
-            <textarea class="form-control" placeholder="Descrição"  name="articleDescrip" id="editor" cols="30" rows="10"><?php echo $row['articleDescrip'];?></textarea>    
+            <textarea class="form-control" placeholder="Descrição"  name="articleDescrip"<?php if(isset($error)){ echo $_POST['articleDescrip'];}?> id="editor" cols="30" rows="10"></textarea>    
           
            
-            <textarea class="form-control"  placeholder="texto"  name="articleContent"  id="textarea1"  id="editor" cols="30" rows="10">  <?php echo $row['articleContent'];?></textarea>    
+            <textarea class="form-control"  placeholder="texto"  name="articleContent"  id="textarea1"  <?php if(isset($error)){ echo $_POST['articleContent'];}?> id="editor" cols="30" rows="10"></textarea>    
             </div> 
             <div class="form-group">
-                <button name="submit" class="btn btn-primary" id="submit">Adicionar</button>
+                <button name="submit" class="btn btn-primary" id="submit">Submit new post</button>
             </div>
         </div>
- 
+    </div>
     </form>
+</div>
 
-    <style>
+<style>
     #row_style {
         margin-top: 30px;
     }
@@ -152,6 +152,7 @@ $stmt->execute(array(
     }
 </style>
 
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
 <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
 <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 
@@ -162,5 +163,9 @@ $stmt->execute(array(
         });
     })
 </script>
+<!-- New Blog Post - END -->
+
 </div>
-<?php include("footer.php");  ?>
+
+</body>
+</html>

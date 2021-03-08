@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>New Blog Post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
 <?php require_once('../includes/config.php'); 
 
 if(!$user->is_logged_in()){ header('Location: login.php'); }
@@ -5,7 +19,7 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 <?php include("head.php");  ?>
 <!-- On page head area--> 
-  <title>Add New Article - Techno Smarter Blog</title>
+  <title>Aicionar nova postagem</title>
     <script src= src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js></script>
     <script>
           tinymce.init({
@@ -26,7 +40,7 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 <div class="content">
  
-    <h1>Add New Article</h1>
+
 
     <?php
 
@@ -93,28 +107,68 @@ $stmt->execute(array(
         }
     }
     ?>
- <form action="" method="post">
-
-        <h2><label>Article Title</label><br>
-        <input type="text" name="articleTitle" style="width:100%;height:40px" value="<?php if(isset($error)){ echo $_POST['articleTitle'];}?>"></h2>
-
-        <h2><label>Short Description(Meta Description) </label><br>
-        <textarea name="articleDescrip" cols="120" rows="6"><?php if(isset($error)){ echo $_POST['articleDescrip'];}?></textarea></h2>
-
-        <h2><label>Long Description(Body Content)</label><br>
-        <textarea name="articleContent" id="textarea1" class="mceEditor" cols="120" rows='20'><?php if(isset($error)){ echo $_POST['articleContent'];}?></textarea></h2>
-        
-
-       
-        <button name="submit" class="subbtn">Submit</button>
 
 
+
+<div class="page-header">
+    <h1>Nova postagem</h1>
+</div>
+
+<!-- New Blog Post - START -->
+<div class="container">
+
+    <form action="" method="post">
+        <h4 class="text-center">Adicionar nova postagem</h4>
+        <div class="col-md-12">
+            <div class="form-group">
+           
+
+                <input type="text" class="form-control" placeholder="Titulo"  name="articleTitle" value="<?php if(isset($error)){ echo $_POST['articleTitle'];}?>"> 
+
+
+               
+            
+            <textarea class="form-control" placeholder="Descrição"  name="articleDescrip"<?php if(isset($error)){ echo $_POST['articleDescrip'];}?> id="editor" cols="30" rows="10"></textarea>    
+          
+           
+            <textarea class="form-control"  placeholder="texto"  name="articleContent"  id="textarea1"  <?php if(isset($error)){ echo $_POST['articleContent'];}?> id="editor" cols="30" rows="10"></textarea>    
+            </div> 
+            <div class="form-group">
+                <button name="submit" class="btn btn-primary" id="submit">Submit new post</button>
+            </div>
+        </div>
+ 
     </form>
+</div>
 
+<style>
+    #row_style {
+        margin-top: 30px;
+    }
 
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+<script>
+    $(function () {
+        $("#editor").shieldEditor({
+            height: 260
+        });
+    })
+</script>
+<!-- New Blog Post - END -->
 
 </div>
 
-<?php include("footer.php");  ?>
 
- 
+
+</body>
+</html>
+

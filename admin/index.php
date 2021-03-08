@@ -4,6 +4,7 @@
 require_once('../includes/config.php');
 require_once('./header.php');
 
+
 //check login or not 
 if(!$user->is_logged_in()){ header('Location: login.php'); }
 
@@ -19,7 +20,12 @@ if(isset($_GET['delpost'])){
 
 ?>
 
-<?php include("head.php");  ?>
+
+
+
+
+
+
 
   <title>Admin Page </title>
   <script language="JavaScript" type="text/javascript">
@@ -41,29 +47,62 @@ if(isset($_GET['delpost'])){
     } 
     ?>
 
-    <table>
-    <tr>
-        <th>Article Title</th>
-        <th>Posted Date</th>
-        <th>Update</th>
-         <th>Delete</th>
-    </tr>
+<?php include("header.php");  ?>
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<?php include("header.php");  ?>
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<div class="container">
+    <div class="row clearfix">
+    	<div class="col-md-12 table-responsive">
+			<table class="table table-bordered table-hover table-sortable" id="tab_logic">
+				<thead>
+					<tr >
+						<th class="text-center">
+							Título
+						</th>
+						<th class="text-center">
+							Data
+						</th>
+						<th class="text-center">
+							Editar
+						</th>
+    					<th class="text-center">
+							Deletar
+						
+        			
+						</th>
+					
+                    
+				
+
+
+
+
+   
     <?php
         try {
 
             $stmt = $db->query('SELECT articleId, articleTitle, articleDate FROM techno_blog ORDER BY articleId DESC');
             while($row = $stmt->fetch()){
+
+                
+
                 
                 echo '<tr>';
                 echo '<td>'.$row['articleTitle'].'</td>';
                 echo '<td>'.date('jS M Y', strtotime($row['articleDate'])).'</td>';
                 ?>
+                
 
                 <td>
                      <button class="editbtn" > <a href="edit-blog-article.php?id=<?php echo $row['articleId'];?>" >Edit </a >  </button ></td> <td>
-                    <button class="delbtn" >    <a href="javascript:delpost('<?php echo $row['articleId'];?>','<?php echo $row['articleTitle'];?>')" >Delete </a > </button >
+                    <button ame="del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'class="delbtn" >    <a href="javascript:delpost('<?php echo $row['articleId'];?>','<?php echo $row['articleTitle'];?>')" >Deletar </a > </button >
                 </td>
-                
+              
+					</tr>
                 <?php 
                 echo '</tr>';
 
