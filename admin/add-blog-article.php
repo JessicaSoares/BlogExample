@@ -122,7 +122,7 @@ $stmt->execute(array(
         <div class="col-md-12">
             <div class="form-group">
            
-
+            <input type="hidden" name="articleId" value="<?php echo $row['articleId'];?>">
                 <input type="text" class="form-control" placeholder="Titulo"  name="articleTitle" value="<?php if(isset($error)){ echo $_POST['articleTitle'];}?>"> 
 
 
