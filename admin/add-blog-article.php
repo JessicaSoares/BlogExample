@@ -128,10 +128,10 @@ $stmt->execute(array(
 
                
             
-            <textarea class="form-control" placeholder="Descrição"  name="articleDescrip"<?php if(isset($error)){ echo $_POST['articleDescrip'];}?> id="editor" cols="30" rows="10"></textarea>    
+            <textarea type="text"  class="form-control" placeholder="Descrição"  name="articleDescrip"<?php if(isset($error)){ echo $_POST['articleDescrip'];}?> id="editor" cols="30" rows="10"></textarea>    
           
            
-            <textarea class="form-control"  placeholder="texto"  name="articleContent"  id="textarea1"  <?php if(isset($error)){ echo $_POST['articleContent'];}?> id="editor" cols="30" rows="10"></textarea>    
+            <textarea type="text" class="form-control"  placeholder="texto"  name="articleContent"  id="textarea1"  <?php if(isset($error)){ echo $_POST['articleContent'];}?> id="editor" cols="30" rows="10"></textarea>    
             </div> 
             <div class="form-group">
                 <button name="submit" class="btn btn-primary" id="submit">Submit new post</button>

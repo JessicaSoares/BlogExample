@@ -1,6 +1,6 @@
 <?php
 include("head.php");  
-define("ROW_PER_PAGE",10);
+define("ROW_PER_PAGE",2);
 require('includes/config.php'); 
 include("header.php");
 ?>
@@ -68,6 +68,8 @@ include("header.php");
 ?>
 <div class="card">
 <form name='frmSearch' action='' method='post'>
+
+
 <div style='text-align:right;margin:20px 0px;'><input type='text' name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'></div>
 <table class='tbl-qa'>
   <thead>
